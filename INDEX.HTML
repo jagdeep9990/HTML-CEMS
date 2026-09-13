@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aravali College of Engineering and Management - Event Portal</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a; /* Deep Blue representing Aravali */
+            --secondary-color: #f59e0b; /* Amber/Gold accent */
+            --text-dark: #1f2937;
+            --text-light: #ffffff;
+            --bg-light: #f3f4f6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo-area span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)), url('https://unsplash.com') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #d97706;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Grid Layout for Events */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .event-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-img {
+            height: 200px;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: bold;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .event-details {
+            padding: 1.5rem;
+        }
+
+        .event-tag {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .event-details h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .event-info {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Registration Form Styles */
+        .reg-section {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul li {
+                margin: 0 1rem;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .reg-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <h1>ARAVALI <span>ACEM</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#register">Register Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section class="hero" id="home">
+        <h2>ACEM Event Management Hub</h2>
+        <p>Explore, participate, and innovate. Join the upcoming technical symposiums, cultural festivals, and sports meets organized by the Aravali College of Engineering and Management.</p>
+        <a href="#events" class="btn">Explore Events</a>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Events Grid Section -->
+        <section id="events">
+            <h2 class="section-title">Upcoming College Events</h2>
+            <div class="event-grid">
+                
+                <!-- Event 1 -->
+                <div class="event-card">
+                    <div class="event-img" style="background-image: url('https://unsplash.com');"></div>
+                    <div class="event-details">
+                        <span class="event-tag">Technical</span>
+                        <h3>TechAura 2026</h3>
+                        <p class="event-info">🗓️ Oct 12, 2026 | 📍 Main Campus Labs</p>
+                        <p>The ultimate annual hackathon and project exhibition displaying creative engineering concepts from all engineering branches.</p>
+                        <br>
+                        <a href="#register" class="btn" onclick="setEventSelection('TechAura 2026')">Join Event</a>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card">
+                    <div class="event-img" style="background-image: url('https://unsplash.com');"></div>
+                    <div class="event-details">
+                        <span class="event-tag">Cultural</span>
+                        <h3>Aravali Fest '26</h3>
+                        <p class="event-info">🗓️ Nov 05, 2026 | 📍 Open Air Theatre</p>
+                        <p>Celebrate diversity through music, theatrical performances, dance choreography showdowns, and fine arts showcases.</p>
+                        <br>
+                        <a href="#register" class="btn" onclick="setEventSelection('Aravali Fest 2026')">Join Event</a>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-card">
+                    <div class="event-img" style="background-image: url('https://unsplash.com');"></div>
